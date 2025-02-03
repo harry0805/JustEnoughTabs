@@ -1,0 +1,58 @@
+body {
+    width: 300px;
+    position: relative;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Hide scrollbar for webkit browsers */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.page-content {
+    margin: 10px;
+}
+
+button {
+    margin: 5px 0;
+    /* Add full width setting */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.lowercase {
+    text-transform: none;
+}
+
+#instructions {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.options-link {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #2196F3;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.options-link:hover {
+    text-decoration: underline;
+}
+
+.separator {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+/* New rule to turn button red */
+.btn-red:enabled {
+    background-color: #f44336 !important;
+}
+
+/* Hide empty MDL tooltips */
+.mdl-tooltip:empty {
+    display: none !important;
+}

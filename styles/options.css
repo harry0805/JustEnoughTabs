@@ -1,0 +1,47 @@
+.mdl-layout__content {
+    padding: 20px;
+}
+
+.page-content {
+    max-width: 900px;
+}
+
+.mdl-data-table {
+    table-layout: fixed;
+}
+
+.mdl-data-table td,
+.mdl-data-table th {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mdl-button--icon {
+    min-width: 24px;
+}
+
+.center {
+    text-align: center;
+}
+
+/* .mdl-layout__header {
+    background-color: #813860;
+} */
+
+.mdl-layout-title {
+    color: #fff;
+}
+
+.mdl-layout__drawer-button {
+    align-content: center;
+}
+
+.mdl-dialog {
+    width: 80%;
+    max-width: 500px;
+}
+
+.full-width {
+    width: 100%;
+}

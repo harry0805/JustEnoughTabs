@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./mdl/material-icons.css">
+    <link rel="stylesheet" href="./mdl/material.min.css">
+    <script src="./mdl/material.min.js"></script>
+
+    <link rel="stylesheet" href="styles/all.css">
+    <link rel="stylesheet" href="styles/popup.css">
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-color--primary">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title mdl-color-text--white">Just Enough Tabs</span>
+            </div>
+        </header>
+        <!-- Main Page -->
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <div id="instructions">
+                    This plugin will stop links from opening in new tabs.
+                </div>
+
+                <button id="full-button"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored lowercase full-width">
+                    Block Full Domain
+                </button>
+                <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="full-button"></div>
+                <hr class="separator">
+                <button id="second-level-button"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored lowercase full-width">
+                    Block Second Level Domain
+                </button>
+                <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="second-level-button"></div>
+
+                <a class="options-link" href="options.html" target="_blank">Configure all blocked sites</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="scripts/popup.js" type="module" defer></script>
+</body>
+
+</html>

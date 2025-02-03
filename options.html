@@ -1,0 +1,95 @@
+<head>
+    <title>Extension Options</title>
+    <link rel="stylesheet" href="./mdl/material-icons.css">
+    <link rel="stylesheet" href="./mdl/material.min.css">
+    <script src="./mdl/material.min.js"></script>
+
+    <link rel="stylesheet" href="styles/allcss">
+    <link rel="stylesheet" href="styles/options.css">
+</head>
+
+<body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">Just Enough Tabs</span>
+                <!-- Navigation. We hide it in small screens. -->
+                <nav class="mdl-navigation" style="margin-left: 50px;">
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <!-- Main Page -->
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <h3>Blocked sites</h3>
+                        <p>This plugin will stop links from opening in new tabs in the sites listed here.</p>
+                        <p>Adding a second level domain(E.g. google.com) will block all subdomains(E.g.
+                            mail.google.com, drive.google.com) as well.</p>
+                        <button id="add-new"
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored full-width">
+                            Add New Domain
+                        </button>
+                        <!-- <ul id="link-list" class="mdl-list"></ul> -->
+                        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width">
+                            <thead>
+                                <tr>
+                                    <th class="mdl-data-table__cell--non-numeric">Domain</th>
+                                    <th style="width: 120px;">Edit/Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody id="link-list">
+                                <!-- Table will be injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Add New Dialog -->
+    <dialog id="add-dialog" class="mdl-dialog">
+        <h3 class="mdl-dialog__title">Add a new domain</h3>
+        <form id="add-dialog-form">
+            <div class="mdl-dialog__content">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-div full-width"
+                    id="new-domain">
+                    <input class="mdl-textfield__input domain-input" style="color: black;" type="text">
+                    <label class="mdl-textfield__label" for="new-link">Domain</label>
+                    <span class="mdl-textfield__error"></span>
+                </div>
+            </div>
+            <div class="mdl-dialog__actions">
+                <input type="submit" value="Add" class="mdl-button mdl-button--raised mdl-button--colored">
+                <input type="button" value="Cancel" class="mdl-button close-dialog">
+            </div>
+        </form>
+    </dialog>
+    <!-- Edit Existing Dialog -->
+    <dialog id="edit-dialog" class="mdl-dialog">
+        <h3 class="mdl-dialog__title">Edit domain</h3>
+        <form id="edit-dialog-form">
+            <div class="mdl-dialog__content">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-div full-width">
+                    <input class="mdl-textfield__input domain-input" style="color: black;" type="text"
+                        value="example.com">
+                    <label class="mdl-textfield__label" for="new-link">Domain</label>
+                    <span class="mdl-textfield__error"></span>
+                </div>
+            </div>
+            <div class="mdl-dialog__actions">
+                <input type="submit" value="Edit" class="mdl-button mdl-button--raised mdl-button--colored">
+                <input type="button" value="Cancel" class="mdl-button close-dialog">
+            </div>
+        </form>
+    </dialog>
+    <script src="scripts/options.js" type="module" defer></script>
+</body>
