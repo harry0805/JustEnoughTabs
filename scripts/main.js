@@ -1,17 +1,13 @@
+function extractDomain(url) {
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'http://' + url;
+    }
+    return new URL(url).hostname;
+}
+
 function matchUrl(urlToCheck, domainToMatch) {
-    // Normalize the inputs by removing protocols, trailing paths, and leading "www." if present
-    const normalizedUrl = urlToCheck
-        .replace(/^https?:\/\//, "") // remove http:// or https://
-        .split("/")[0]              // take only the domain part (stop at first slash)
-        .toLowerCase();
-
-    const normalizedDomain = domainToMatch
-        .replace(/^https?:\/\//, "")
-        .replace(/^www\./, "")
-        .toLowerCase();
-
-    // If the end of normalizedUrl matches normalizedDomain, return true
-    return normalizedUrl.endsWith(normalizedDomain);
+    urlToCheck = extractDomain(urlToCheck);
+    return urlToCheck.endsWith(domainToMatch);
 }
 
 function targetCurrentPage(event) {
@@ -28,9 +24,9 @@ function addListeners() {
 
 async function checkRegistered(link) {
     let check = false;
-    await chrome.storage.sync.get("links").then((items) => {
-        for (i in items.links) {
-            if (matchUrl(link, items.links[i])) {
+    await chrome.storage.sync.get("domains").then((items) => {
+        for (i in items.domains) {
+            if (matchUrl(link, items.domains[i])) {
                 check = true;
                 break;
             }
@@ -40,7 +36,7 @@ async function checkRegistered(link) {
 }
 
 async function main() {
-    let current_location = window.location.href;
+    const current_location = window.location.href;
     if (await checkRegistered(current_location)) {
         addListeners();
         console.log('Preventing extra tabs!');
@@ -48,5 +44,9 @@ async function main() {
         console.log('NOT preventing extra tabs!');
     }
 }
+
+chrome.storage.sync.onChanged.addListener(() => {
+    main();
+});
 
 main();

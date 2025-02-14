@@ -4,6 +4,7 @@ const fullButton = document.querySelector('#full-button');
 const fullButtonTooltip = document.querySelector('[data-mdl-for="full-button"]');
 const secondLevelButton = document.querySelector('#second-level-button');
 const secondLevelButtonTooltip = document.querySelector('[data-mdl-for="second-level-button"]');
+const statusElement = document.querySelector('#status-text')
 
 const actionUnavailableStr = 'Action unavailable for current page';
 
@@ -19,6 +20,10 @@ function getSecondLevelDomain(fullDomain) {
         return parts.slice(-2).join('.');
     }
     return fullDomain;
+}
+
+function showStatus() {
+    statusElement.style.visibility = 'visible';
 }
 
 async function refreshButtonState() {
@@ -38,7 +43,7 @@ async function refreshButtonState() {
 
     if (domainParts.length < 3) {
         fullButton.disabled = true;
-        if (fullButtonTooltip) fullButtonTooltip.textContent = actionUnavailableStr;
+        fullButtonTooltip.textContent = actionUnavailableStr;
     } else {
         fullButton.disabled = false;
     }
@@ -47,7 +52,7 @@ async function refreshButtonState() {
         if (domains.includes(domain) && !fullButton.disabled) {
             fullButton.textContent = `Unblock ${domain}`;
             fullButton.classList.add('btn-red');
-        } else {
+        } else if (!fullButton.disabled) {
             fullButton.textContent = `Block ${domain}`;
             fullButton.classList.remove('btn-red');
         }
@@ -62,7 +67,9 @@ async function refreshButtonState() {
             secondLevelButton.textContent = `Block ${secondLevelDomain}`;
             secondLevelButton.classList.remove('btn-red');
 
-            fullButtonTooltip.textContent = '';
+            if (!fullButton.disabled){
+                fullButtonTooltip.textContent = '';
+            }
         }
 
         secondLevelButtonTooltip.textContent = '';
@@ -83,6 +90,7 @@ fullButton.addEventListener('click', async () => {
             const newDomains = domains.filter(d => d !== domain);
             chrome.storage.sync.set({ domains: newDomains }, () => {
                 refreshButtonState();
+                showStatus();
             });
         } else {
             domains.push(domain);
@@ -103,6 +111,7 @@ secondLevelButton.addEventListener('click', async () => {
             const newDomains = domains.filter(d => d !== secondLevelDomain);
             chrome.storage.sync.set({ domains: newDomains }, () => {
                 refreshButtonState();
+                showStatus();
             });
         } else {
             domains.push(secondLevelDomain);
